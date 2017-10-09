@@ -21,7 +21,8 @@ class Sonar {
        INVALID,
        PULSE_SENT,
        ECHO_RISE,
-       ECHO_FALL
+       ECHO_FALL,
+       TIMEOUT
     }State_t;
 
     int init();

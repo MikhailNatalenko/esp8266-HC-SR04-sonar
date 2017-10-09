@@ -62,6 +62,12 @@ void Sonar::setState(State_t s) {
       return;
 	}
 	
+	if (state == TIMEOUT && s == ECHO_FALL){
+		distance = 400;
+		state = ECHO_FALL;
+		return;
+	}
+	
 	if(s == PULSE_SENT){
 		if(/*state == INVALID ||*/ state == ECHO_FALL || state == PULSE_SENT){
 		  state = PULSE_SENT;
@@ -71,8 +77,8 @@ void Sonar::setState(State_t s) {
 		  return;
 	    }
 	    if ((t - rising) >300) {
-			state = ECHO_FALL;
-			distance = -1;
+			state = TIMEOUT;
+			distance = 400;    // TODO: set max or -1 ?
 			return;
 		}
 	}
